@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Canal } from '../model';
+import { Canal, Contenu } from '../model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ import { Canal } from '../model';
 export class CanalHttpService {
 
   private Canals: Array<Canal> = new Array<Canal>();
+  listContenus: Array<Contenu>;
+  
 
   constructor(private http: HttpClient) { 
     this.load();
@@ -17,6 +19,8 @@ export class CanalHttpService {
   findAll(): Array<Canal> {
     return this.Canals;
   }
+
+
 
   find(id: number): Observable<Canal> {
     return this.http.get<Canal>("http://localhost:5000/api/Canaux/"+id);

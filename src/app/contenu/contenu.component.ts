@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CanalHttpService } from '../canal/canal-http.service';
+import { Canal, Contenu } from '../model';
+import { ContenuHttpService } from './contenu-http.service';
 
 @Component({
   selector: 'app-contenu',
@@ -7,9 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContenuComponent implements OnInit {
 
-  constructor() { }
+  ContenuForm: Contenu = null;
+  CanalForm: Canal=null;
+
+  constructor(private ContenuService: ContenuHttpService, private CanalService: CanalHttpService) {
+  }
 
   ngOnInit(): void {
   }
 
+  listCanal(): Array<Canal> {
+    return this.CanalService.findAll();
+  }
+
+  listContenu(): Array<Contenu> {
+    return this.CanalForm.contenus;
+  }
+  
+  list(): Array<Contenu> {
+    return this.ContenuService.findAll();
+  }
+
+  remove(id: number): void {
+    this.ContenuService.delete(id);
+  }
+
+  save(): void {
+    if (this.ContenuForm.id) {
+      this.ContenuService.update(this.ContenuForm);
+    } else {
+
+      this.ContenuService.create(this.ContenuForm);
+    }
+  }
+
+  
 }

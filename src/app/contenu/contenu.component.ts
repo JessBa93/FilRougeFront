@@ -44,5 +44,23 @@ export class ContenuComponent implements OnInit {
     }
   }
 
+  saveCanal(canal: Canal) {
+
+    console.log(canal);
+
+    canal.contenus.forEach(c => {
+
+      this.ContenuService.update(c);
+
+    })
+
+    this.CanalService.update(canal);
+
+  }
   
+  removeCanal(id: number) {
+
+    this.CanalService.delete(id);
+
+  }
 }

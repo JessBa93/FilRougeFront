@@ -1,46 +1,83 @@
 <div class="card my-3">
-    <div class="card-header bg-info text-white">
-        <h2>Liste des canaux</h2>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-striped" id="tableFiliere">
-                <thead>
-                    <tr>
-                        <th>Libelle du canal</th>
-                        <th>Activer</th>
-                        <th>Texte du message</th>
-                        <th>Valider</th>
-                        <th>Editer/Supprimer</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let canal of listCanal()">
-                        <td>{{canal.libelle}}</td>
-                        <td><input class="p-2" type="checkbox" [(ngModel)]="canal.activation"></td>
-                    
-                    <!--<tr *ngFor="let contenu of listContenu()">
-                        <td>{{contenu.texte}}</td>
-                        
 
-                        
-                    </tr>-->
-                    <td>
-                        <ul>
-                            <li *ngFor="let contenu of canal.contenus">{{contenu.texte}}</li>
-                        </ul>  
-                    </td>
-                    <td><input class="p-2" type="checkbox" [(ngModel)]="canal.activation"></td>
-                    <td>
-                        <div class="btn-group btn-group-sm"><button type="button" class="btn btn-success"
-                                (click)="save()"><i class="fa fa-check"></i></button><button type="button"
-                                class="btn btn-danger" (click)="remove(canal.id)"><i
-                                    class="fa fa-trash"></i></button>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="card-header bg-info text-white">
+
+        <h2>Liste des messages</h2>
+
     </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-striped" id="tableFiliere">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Libelle du canal</th>
+
+                        <th>Activer</th>
+
+                        <th>Texte du message</th>
+
+                        <th>Valider</th>
+
+                        <th>Editer/Supprimer</th>
+
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let canal of listCanal()">
+
+                        <td>{{canal.libelle}}</td>
+
+                        <td><input class="p-2" type="checkbox" [(ngModel)]="canal.activation"></td>
+
+                        <td>
+
+                            <ul style="list-style: none; padding: 0px">
+
+                                <li *ngFor="let contenu of canal.contenus"><input class="p-2" type="checkbox"
+
+                                        [(ngModel)]="contenu.validation"> {{contenu.texte}} </li>
+
+
+
+                            </ul>
+
+                        </td>
+
+                        <td></td>
+
+                        <td>
+
+                            <div class="btn-group btn-group-sm"><button type="button" class="btn btn-success"
+
+                                    (click)="saveCanal(canal)"><i class="fa fa-check"></i></button><button type="button"
+
+                                    class="btn btn-danger" (click)="removeCanal(canal.id)"><i
+
+                                        class="fa fa-trash"></i></button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+                       

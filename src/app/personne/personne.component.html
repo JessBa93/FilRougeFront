@@ -1,0 +1,89 @@
+<div class="card my-3">
+    <div class="card-header bg-info text-white">
+        <h2>Liste des Personnes</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped" id="tableFiliere">
+                <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Pseudo</th>
+                        <th>Email</th>
+                        <th>Validé</th>
+                        <th>Editer/Supprimer</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let personne of list()">
+                        <td>{{personne.id}}</td>
+                        <td>{{personne.pseudo}}</td>
+                        <td>{{personne.email}}</td>
+                        <td>
+                            <input class="p-2" type="checkbox" [(ngModel)]="personne.validation">
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm"><button type="button" class="btn btn-primary"
+                                    (click)="edit(personne.id)"><i class="fa fa-edit"></i></button><button type="button"
+                                    class="btn btn-danger" (click)="remove(personne.id)"><i
+                                        class="fa fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-success btn-lg" (click)="add()">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</div>
+<div class="card" id="personneForm" *ngIf="personneForm">
+    <div class="card-header bg-info text-white">
+        <h3>
+            Edition de la personne
+        </h3>
+    </div>
+    <div class="card-body">
+        <div class="form-group row">
+            <label for="Id" class="col-md-2 col-form-label">Identifiant:</label>
+            <input type="number" class="col-md-10 form-control" id="Id" readonly [(ngModel)]="personneForm.id">
+        </div>
+        <div class="form-group row">
+            <label for="prenom" class="col-md-2 col-form-label">Prenom :</label>
+            <input type="text" class="col-md-10 form-control" id="prenom" [(ngModel)]="personneForm.prenom">
+        </div>
+        <div class="form-group row">
+            <label for="nom" class="col-md-2 col-form-label">Nom :</label>
+            <input type="text" class="col-md-10 form-control" id="nom" [(ngModel)]="personneForm.nom">
+        </div>
+        <div class="form-group row">
+            <label for="Pseudo" class="col-md-2 col-form-label">Pseudo :</label>
+            <input type="text" class="col-md-10 form-control" id="Pseudo" [(ngModel)]="personneForm.pseudo">
+        </div>
+        <div class="form-group row">
+            <label for="Email" class="col-md-2 col-form-label">Email :</label>
+            <input type="email" class="col-md-10 form-control" id="Email" [(ngModel)]="personneForm.email">
+        </div>
+        <div class="form-group row">
+            <label for="Role" class="col-md-2 col-form-label">Role :</label>
+            <select [(ngModel)]="personneForm.role">
+                <option *ngFor="let role of roles" [value]="role">{{role}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <button type="button" class="btn btn-success" (click)="save()">
+                <i class="fa fa-check"></i>
+            </button>
+            <button type="button" class="btn btn-warning" (click)="cancel()">
+                <i class="fa fa-undo"></i>
+            </button>
+        </div>
+    </div>
+</div>
